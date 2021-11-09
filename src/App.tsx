@@ -4,7 +4,7 @@ import ListItemForm from './components/ListItemForm';
 
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
       <ListItemForm />
     </div>
   );
