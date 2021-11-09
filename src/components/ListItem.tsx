@@ -1,3 +1,20 @@
-const ListItem = () => <article></article>;
+import { ListItemType } from './models';
+
+interface ListItemProps {
+  item: ListItemType;
+}
+
+const ListItem = ({ item: { title, description } }: ListItemProps) => {
+  return (
+    <article>
+      <header>
+        <h1>{title}</h1>
+      </header>
+      <div>
+        <p>{description}</p>
+      </div>
+    </article>
+  );
+};
 
 export default ListItem;
