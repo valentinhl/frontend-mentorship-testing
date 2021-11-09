@@ -4,7 +4,7 @@ import { ListItemType } from './components/models';
 import ListItemForm from './components/ListItemForm';
 import ListItem from './components/ListItem';
 
-function App() {
+const App = (): JSX.Element => {
   const [listItemValues, setListItemValues] = useState<ListItemType[]>([]);
 
   useEffect(() => {
@@ -21,12 +21,12 @@ function App() {
         />
       </div>
       <div>
-        {listItemValues.map((listItemValue, index) => (
-          <ListItem key={index} item={listItemValue} />
+        {listItemValues.map(listItemValue => (
+          <ListItem key={listItemValue.id} item={listItemValue} />
         ))}
       </div>
     </div>
   );
-}
+};
 
 export default App;

@@ -4,7 +4,9 @@ export interface ListItemProps {
   item: ListItemType;
 }
 
-const ListItem = ({ item: { title, description } }: ListItemProps) => {
+const ListItem = ({
+  item: { title, description }
+}: ListItemProps): JSX.Element => {
   return (
     <article>
       <header>

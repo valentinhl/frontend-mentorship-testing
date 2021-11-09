@@ -1,17 +1,28 @@
 import { FC } from 'react';
 import { ListItemType } from './models';
+import { v4 as uuidv4 } from 'uuid';
 
 interface ListItemFormProps {
   onSubmit: (newValue: ListItemType) => void;
 }
 
-const ListItemForm: FC<ListItemFormProps> = ({ onSubmit }) => {
-  const submitForm = (event: any) => {
+interface FormData {
+  title: { value: string };
+  description: { value: string };
+}
+
+const ListItemForm: FC<ListItemFormProps> = ({ onSubmit }): JSX.Element => {
+  const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const { title, description } = event.target.elements;
+    const { title, description } = event.target as typeof event.target &
+      FormData;
 
-    onSubmit({ title: title.value, description: description.value });
+    onSubmit({
+      id: uuidv4(),
+      title: title.value,
+      description: description.value
+    });
   };
 
   return (
