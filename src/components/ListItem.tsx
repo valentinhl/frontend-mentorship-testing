@@ -1,6 +1,6 @@
 import { ListItemType } from './models';
 
-interface ListItemProps {
+export interface ListItemProps {
   item: ListItemType;
 }
 
