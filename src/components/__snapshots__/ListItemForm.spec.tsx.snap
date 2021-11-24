@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListItemForm.tsx renders the component successfully 1`] = `
+<form
+  data-testid="list-item-form-form"
+>
+  <br />
+   
+  <br />
+  <label
+    for="title"
+  >
+    Title: 
+  </label>
+  <input
+    data-testid="list-item-form-input-title"
+    id="title"
+    name="title"
+  />
+  <br />
+   
+  <br />
+  <label
+    for="description"
+  >
+    Description: 
+  </label>
+  <textarea
+    data-testid="list-item-form-input-description"
+    id="description"
+    name="description"
+  />
+  <br />
+   
+  <br />
+  <button
+    data-testid="list-item-form-input-submit"
+  >
+    SUBMIT
+  </button>
+</form>
+`;
