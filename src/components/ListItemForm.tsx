@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { ListItemType } from './models';
 import { v4 as uuidv4 } from 'uuid';
+import './ListItemForm.css';
 
 interface ListItemFormProps {
   onSubmit: (newValue: ListItemType) => void;
@@ -26,14 +27,21 @@ const ListItemForm: FC<ListItemFormProps> = ({ onSubmit }): JSX.Element => {
   };
 
   return (
-    <form onSubmit={event => submitForm(event)}>
-      <br /> <br />
-      <label htmlFor='title'>Title: </label>
-      <input id='title' />
-      <br /> <br />
-      <label htmlFor='description'>Description: </label>
-      <textarea id='description' />
-      <br /> <br />
+    <form className='todo-creation-form' onSubmit={event => submitForm(event)}>
+      <fieldset className='fieldset'>
+        <label htmlFor='title'>Title</label>
+        <input className='input-field' id='title' />
+      </fieldset>
+
+      <fieldset className='fieldset'>
+        <label htmlFor='description'>Description </label>
+        <textarea
+          className='input-field'
+          id='description'
+          placeholder='Please enter a description here'
+        />
+      </fieldset>
+
       <button>SUBMIT</button>
     </form>
   );

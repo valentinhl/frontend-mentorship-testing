@@ -3,6 +3,7 @@ import './App.css';
 import { ListItemType } from './components/models';
 import ListItemForm from './components/ListItemForm';
 import ListItem from './components/ListItem';
+import HorizontalNavbar from './components/HorizontalNavbar';
 
 const App = (): JSX.Element => {
   const [listItemValues, setListItemValues] = useState<ListItemType[]>([]);
@@ -13,7 +14,8 @@ const App = (): JSX.Element => {
 
   return (
     <div className='App'>
-      <div>
+      <HorizontalNavbar />
+      <div className='form-container'>
         <ListItemForm
           onSubmit={(newValue: ListItemType) =>
             setListItemValues(values => [...values, newValue])
