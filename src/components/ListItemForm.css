@@ -17,3 +17,8 @@
 .input-field {
   width: 200px;
 }
+
+.error {
+  display: 'block';
+  color: red;
+}
