@@ -2,7 +2,7 @@
 
 exports[`ListItemForm.tsx renders the component successfully 1`] = `
 <form
-  data-testid="list-item-form-form"
+  aria-label="form"
 >
   <br />
    
@@ -10,10 +10,9 @@ exports[`ListItemForm.tsx renders the component successfully 1`] = `
   <label
     for="title"
   >
-    Title: 
+    Title:
   </label>
   <input
-    data-testid="list-item-form-input-title"
     id="title"
     name="title"
   />
@@ -23,19 +22,16 @@ exports[`ListItemForm.tsx renders the component successfully 1`] = `
   <label
     for="description"
   >
-    Description: 
+    Description:
   </label>
   <textarea
-    data-testid="list-item-form-input-description"
     id="description"
     name="description"
   />
   <br />
    
   <br />
-  <button
-    data-testid="list-item-form-input-submit"
-  >
+  <button>
     SUBMIT
   </button>
 </form>

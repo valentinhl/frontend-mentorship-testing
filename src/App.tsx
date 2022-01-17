@@ -12,7 +12,7 @@ const App = (): JSX.Element => {
   }, [listItemValues]);
 
   return (
-    <div className='App'>
+    <div className='App' data-testid='app'>
       <div>
         <ListItemForm
           onSubmit={(newValue: ListItemType) =>

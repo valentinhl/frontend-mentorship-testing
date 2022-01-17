@@ -2,16 +2,16 @@ import { FC } from 'react';
 import { ListItemType } from './models';
 import { v4 as uuidv4 } from 'uuid';
 import {
-  TID_DESCRIPTION,
-  TID_FORM,
-  TID_SUBMIT,
-  TID_TITLE
-} from './ListItemTestId';
+  descriptionLabel,
+  submitButtonText,
+  titleLabel
+} from './ListItemUIText';
 
 export type ListFormOnSubmit = (newValue: ListItemType) => void;
 
 export interface ListItemFormProps {
   onSubmit: ListFormOnSubmit;
+  isSubmitDisabled?: boolean;
 }
 
 export interface ListItemFormData {
@@ -19,7 +19,10 @@ export interface ListItemFormData {
   description: { value: string };
 }
 
-const ListItemForm: FC<ListItemFormProps> = ({ onSubmit }): JSX.Element => {
+const ListItemForm: FC<ListItemFormProps> = ({
+  onSubmit,
+  isSubmitDisabled = false
+}): JSX.Element => {
   const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -35,19 +38,15 @@ const ListItemForm: FC<ListItemFormProps> = ({ onSubmit }): JSX.Element => {
   };
 
   return (
-    <form onSubmit={event => submitForm(event)} data-testid={TID_FORM}>
+    <form onSubmit={event => submitForm(event)} aria-label='form'>
       <br /> <br />
-      <label htmlFor='title'>Title: </label>
-      <input id='title' name='title' data-testid={TID_TITLE} />
+      <label htmlFor='title'>{titleLabel}</label>
+      <input id='title' name='title' />
       <br /> <br />
-      <label htmlFor='description'>Description: </label>
-      <textarea
-        id='description'
-        name='description'
-        data-testid={TID_DESCRIPTION}
-      />
+      <label htmlFor='description'>{descriptionLabel}</label>
+      <textarea id='description' name='description' />
       <br /> <br />
-      <button data-testId={TID_SUBMIT}>SUBMIT</button>
+      <button disabled={isSubmitDisabled}>{submitButtonText}</button>
     </form>
   );
 };

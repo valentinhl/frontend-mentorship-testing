@@ -1,28 +1,16 @@
 import { Screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-const notFoundElementByTestId = (testId: string) => {
-  throw new Error(`Not found element with data-testid: ${testId}`);
-};
-
-export const submitForm = (screen: Screen, buttonTestId: string) => {
-  const button = screen.queryByTestId(buttonTestId);
-  if (button) {
-    userEvent.click(button);
-  } else {
-    notFoundElementByTestId(buttonTestId);
-  }
+export const submitForm = (screen: Screen, buttonText: string) => {
+  const button = screen.getByText(buttonText);
+  userEvent.click(button);
 };
 
 export const changeInputValue = (
   screen: Screen,
-  inputTestId: string,
+  labelText: string,
   value: string
 ) => {
-  const input = screen.queryByTestId(inputTestId);
-  if (input) {
-    userEvent.type(input, value);
-  } else {
-    notFoundElementByTestId(inputTestId);
-  }
+  const input = screen.getByLabelText(labelText);
+  userEvent.type(input, value);
 };
