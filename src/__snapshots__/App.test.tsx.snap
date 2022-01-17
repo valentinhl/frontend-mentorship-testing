@@ -1,46 +1,94 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders App 1`] = `
-<div
-  class="App"
-  data-testid="app"
->
+<body>
   <div>
-    <form
-      aria-label="form"
+    <div
+      class="App"
     >
-      <br />
-       
-      <br />
-      <label
-        for="title"
+      <nav
+        class="horizontal-navbar"
       >
-        Title:
-      </label>
-      <input
-        id="title"
-        name="title"
-      />
-      <br />
-       
-      <br />
-      <label
-        for="description"
+        <ul
+          class="horizontal-navbar-list"
+        >
+          <li>
+            <a
+              href="/"
+            >
+               
+              Home
+            </a>
+          </li>
+          <li>
+            <a
+              href="/todo"
+            >
+               
+              Lists
+            </a>
+          </li>
+          <li>
+            <a
+              href="/todo/create"
+            >
+               
+              New List Item
+            </a>
+          </li>
+          <li>
+            <a
+              href="/stats"
+            >
+               
+              Stats
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div
+        class="form-container"
       >
-        Description:
-      </label>
-      <textarea
-        id="description"
-        name="description"
-      />
-      <br />
-       
-      <br />
-      <button>
-        SUBMIT
-      </button>
-    </form>
+        <form
+          class="todo-creation-form"
+          name="Add a new list item form"
+        >
+          <fieldset
+            class="fieldset"
+          >
+            <label
+              for="title"
+            >
+              Title:
+            </label>
+            <input
+              class="input-field"
+              id="title"
+              name="title"
+            />
+          </fieldset>
+          <fieldset
+            class="fieldset"
+          >
+            <label
+              for="description"
+            >
+              Description:
+            </label>
+            <textarea
+              class="input-field"
+              id="description"
+              name="description"
+              placeholder="Please enter a description here"
+            />
+          </fieldset>
+          <button>
+            SUBMIT
+          </button>
+        </form>
+      </div>
+      <div />
+    </div>
   </div>
-  <div />
-</div>
+</body>
 `;

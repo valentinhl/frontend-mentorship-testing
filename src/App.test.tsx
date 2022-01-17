@@ -4,5 +4,5 @@ import App from './App';
 
 test('renders App', () => {
   render(<App />);
-  expect(screen.getByTestId('app')).toMatchSnapshot()
+  expect(document.body).toMatchSnapshot()
 });
