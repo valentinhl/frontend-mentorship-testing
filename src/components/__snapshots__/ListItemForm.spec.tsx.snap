@@ -2,35 +2,38 @@
 
 exports[`ListItemForm.tsx renders the component successfully 1`] = `
 <form
-  aria-label="form"
+  class="todo-creation-form"
+  name="Add a new list item form"
 >
-  <br />
-   
-  <br />
-  <label
-    for="title"
+  <fieldset
+    class="fieldset"
   >
-    Title:
-  </label>
-  <input
-    id="title"
-    name="title"
-  />
-  <br />
-   
-  <br />
-  <label
-    for="description"
+    <label
+      for="title"
+    >
+      Title:
+    </label>
+    <input
+      class="input-field"
+      id="title"
+      name="title"
+    />
+  </fieldset>
+  <fieldset
+    class="fieldset"
   >
-    Description:
-  </label>
-  <textarea
-    id="description"
-    name="description"
-  />
-  <br />
-   
-  <br />
+    <label
+      for="description"
+    >
+      Description:
+    </label>
+    <textarea
+      class="input-field"
+      id="description"
+      name="description"
+      placeholder="Please enter a description here"
+    />
+  </fieldset>
   <button>
     SUBMIT
   </button>

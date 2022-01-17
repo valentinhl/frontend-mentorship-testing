@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { ListItemType } from './models';
 import { v4 as uuidv4 } from 'uuid';
 import {
+  addListItemForm,
   descriptionLabel,
   submitButtonText,
   titleLabel
@@ -42,7 +43,7 @@ const ListItemForm: FC<ListItemFormProps> = ({
   const { handleChange, values, errors } = useForm({ callback: submitForm });
 
   return (
-    <form className='todo-creation-form' onSubmit={event => submitForm(event)}>
+    <form name={addListItemForm} className='todo-creation-form' onSubmit={event => submitForm(event)}>
       <fieldset className='fieldset'>
         <label htmlFor='title'>{titleLabel}</label>
         <input
