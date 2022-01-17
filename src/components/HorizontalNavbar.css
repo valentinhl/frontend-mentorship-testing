@@ -1,0 +1,11 @@
+.horizontal-navbar {
+  background-color: white;
+  padding: 20px 0;
+}
+
+.horizontal-navbar-list {
+  list-style-type: none;
+  margin: 0;
+  display: flex;
+  column-gap: 20px;
+}
