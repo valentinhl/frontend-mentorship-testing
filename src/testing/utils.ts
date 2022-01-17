@@ -6,7 +6,7 @@ export const submitForm = (screen: Screen, buttonText: string) => {
   userEvent.click(button);
 };
 
-export const changeInputValue = (
+export const typeInputValue = (
   screen: Screen,
   labelText: string,
   value: string

@@ -1,7 +1,7 @@
 import { render, screen, cleanup, RenderResult } from '@testing-library/react';
 import ListItemForm, { ListFormOnSubmit } from './ListItemForm';
 import { MOCK_STRING } from '../testing/mockValues';
-import { changeInputValue, submitForm } from '../testing/utils';
+import { typeInputValue, submitForm } from '../testing/utils';
 import {
   descriptionLabel,
   submitButtonText,
@@ -59,8 +59,8 @@ describe('ListItemForm.tsx', () => {
   });
 
   it('onSubmit receives object with right values', () => {
-    changeInputValue(screen, titleLabel, MOCK_STRING);
-    changeInputValue(screen, descriptionLabel, MOCK_STRING);
+    typeInputValue(screen, titleLabel, MOCK_STRING);
+    typeInputValue(screen, descriptionLabel, MOCK_STRING);
     submitForm(screen, submitButtonText);
 
     expect(onSubmitMock).toHaveBeenCalledWith({
