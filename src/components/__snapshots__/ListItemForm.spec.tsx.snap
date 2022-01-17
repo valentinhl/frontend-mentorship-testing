@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListItemForm.tsx renders the component successfully 1`] = `
+<form
+  aria-label="form"
+>
+  <br />
+   
+  <br />
+  <label
+    for="title"
+  >
+    Title:
+  </label>
+  <input
+    id="title"
+    name="title"
+  />
+  <br />
+   
+  <br />
+  <label
+    for="description"
+  >
+    Description:
+  </label>
+  <textarea
+    id="description"
+    name="description"
+  />
+  <br />
+   
+  <br />
+  <button>
+    SUBMIT
+  </button>
+</form>
+`;

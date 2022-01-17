@@ -1,24 +1,36 @@
 import { FC } from 'react';
 import { ListItemType } from './models';
 import { v4 as uuidv4 } from 'uuid';
+import {
+  descriptionLabel,
+  submitButtonText,
+  titleLabel
+} from './ListItemUIText';
 import './ListItemForm.css';
 import useForm from '../hooks/useForm';
 
-interface ListItemFormProps {
-  onSubmit: (newValue: ListItemType) => void;
+export type ListFormOnSubmit = (newValue: ListItemType) => void;
+
+export interface ListItemFormProps {
+  onSubmit: ListFormOnSubmit;
+  isSubmitDisabled?: boolean;
 }
 
-interface FormData {
+export interface ListItemFormData {
   title: { value: string };
   description: { value: string };
 }
 
-const ListItemForm: FC<ListItemFormProps> = ({ onSubmit }): JSX.Element => {
+const ListItemForm: FC<ListItemFormProps> = ({
+  onSubmit,
+  isSubmitDisabled = false
+}): JSX.Element => {
   const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const { title, description } = event.target as typeof event.target &
-      FormData;
+    const { title, description } = (
+      event.target as EventTarget & HTMLFormElement
+    ).elements as HTMLFormControlsCollection & ListItemFormData;
 
     onSubmit({
       id: uuidv4(),
@@ -32,7 +44,7 @@ const ListItemForm: FC<ListItemFormProps> = ({ onSubmit }): JSX.Element => {
   return (
     <form className='todo-creation-form' onSubmit={event => submitForm(event)}>
       <fieldset className='fieldset'>
-        <label htmlFor='title'>Title</label>
+        <label htmlFor='title'>{titleLabel}</label>
         <input
           className='input-field'
           id='title'
@@ -43,7 +55,7 @@ const ListItemForm: FC<ListItemFormProps> = ({ onSubmit }): JSX.Element => {
       </fieldset>
 
       <fieldset className='fieldset'>
-        <label htmlFor='description'>Description </label>
+        <label htmlFor='description'>{descriptionLabel}</label>
         <textarea
           className='input-field'
           id='description'
@@ -56,7 +68,7 @@ const ListItemForm: FC<ListItemFormProps> = ({ onSubmit }): JSX.Element => {
         )}
       </fieldset>
 
-      <button>SUBMIT</button>
+      <button disabled={isSubmitDisabled}>{submitButtonText}</button>
     </form>
   );
 };
