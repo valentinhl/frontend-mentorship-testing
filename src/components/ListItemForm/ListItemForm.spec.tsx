@@ -3,7 +3,6 @@ import ListItemForm from './ListItemForm';
 import { MOCK_STRING } from '../../testing/mockValues';
 import { typeInputValue, clickButton } from '../../testing/utils';
 import {
-  descriptionLabel,
   submitButtonText,
   titleLabel
 } from '../ListItemUIText';
@@ -22,8 +21,8 @@ describe('ListItemForm.tsx', () => {
   const onChangeMock = jest.fn() as jest.MockedFunction<ListFormOnChange>;
   const formItemMock: ListItemType = {
     id: MOCK_ID,
-    title: MOCK_STRING,
-    description: MOCK_STRING
+    title: '',
+    description: ''
   };
   let rerenderComponent: RenderResult['rerender'];
 
@@ -75,14 +74,29 @@ describe('ListItemForm.tsx', () => {
     expect(screen.getByText(submitButtonText)).toBeEnabled();
   });
 
+  it('calls onChange prop when change event fires', () => {
+    typeInputValue(screen, titleLabel, MOCK_STRING);
+    expect(onChangeMock).toHaveBeenCalled();
+  });
+
   it('calls onSubmit prop once when submit event fires', () => {
     clickButton(screen, submitButtonText);
     expect(onSubmitMock).toHaveBeenCalledTimes(1);
   });
 
   it('onSubmit receives object with right values', () => {
-    typeInputValue(screen, titleLabel, MOCK_STRING);
-    typeInputValue(screen, descriptionLabel, MOCK_STRING);
+    rerenderComponent(
+      <ListItemForm
+        onSubmit={onSubmitMock}
+        onChange={onChangeMock}
+        formItem={{
+          id: MOCK_ID,
+          title: MOCK_STRING,
+          description: MOCK_STRING
+        }}
+      />
+    );
+
     clickButton(screen, submitButtonText);
 
     expect(onSubmitMock).toHaveBeenCalledWith({
