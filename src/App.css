@@ -3,7 +3,7 @@
   height: 100%;
 }
 
-.form-container {
+.page-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
 }

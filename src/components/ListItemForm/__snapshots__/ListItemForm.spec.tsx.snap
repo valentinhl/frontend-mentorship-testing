@@ -17,7 +17,9 @@ exports[`ListItemForm.tsx renders the component successfully 1`] = `
       class="input-field"
       id="title"
       name="title"
+      value="MOCK_STRING"
     />
+    
   </fieldset>
   <fieldset
     class="fieldset"
@@ -32,7 +34,10 @@ exports[`ListItemForm.tsx renders the component successfully 1`] = `
       id="description"
       name="description"
       placeholder="Please enter a description here"
-    />
+    >
+      MOCK_STRING
+    </textarea>
+    
   </fieldset>
   <button>
     SUBMIT

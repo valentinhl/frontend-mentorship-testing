@@ -47,7 +47,7 @@ exports[`renders App 1`] = `
         </ul>
       </nav>
       <div
-        class="form-container"
+        class="page-container"
       >
         <form
           class="todo-creation-form"
@@ -65,7 +65,9 @@ exports[`renders App 1`] = `
               class="input-field"
               id="title"
               name="title"
+              value=""
             />
+            
           </fieldset>
           <fieldset
             class="fieldset"
@@ -81,13 +83,13 @@ exports[`renders App 1`] = `
               name="description"
               placeholder="Please enter a description here"
             />
+            
           </fieldset>
           <button>
             SUBMIT
           </button>
         </form>
       </div>
-      <div />
     </div>
   </div>
 </body>

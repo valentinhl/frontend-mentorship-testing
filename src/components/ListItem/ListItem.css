@@ -1,0 +1,6 @@
+.todo-list-item{
+  background-color: rgba(122, 122, 122, 0.75);
+  border-radius: 32px;
+  padding: 8px;
+  margin-top: 24px;
+}

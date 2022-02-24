@@ -1,12 +1,13 @@
 import { render, screen, cleanup, RenderResult } from '@testing-library/react';
-import ListItemForm, { ListFormOnSubmit } from './ListItemForm';
-import { MOCK_STRING } from '../testing/mockValues';
-import { typeInputValue, submitForm } from '../testing/utils';
+import ListItemForm from './ListItemForm';
+import { MOCK_STRING } from '../../testing/mockValues';
+import { typeInputValue, clickButton } from '../../testing/utils';
 import {
   descriptionLabel,
   submitButtonText,
   titleLabel
-} from './ListItemUIText';
+} from '../ListItemUIText';
+import { ListItemType, ListFormOnChange, ListFormOnSubmit } from '../models';
 
 const getMockId = () => 'id';
 
@@ -18,11 +19,22 @@ jest.mock('uuid', () => ({
 describe('ListItemForm.tsx', () => {
   const MOCK_ID = getMockId();
   const onSubmitMock = jest.fn() as jest.MockedFunction<ListFormOnSubmit>;
-  let container: HTMLElement;
+  const onChangeMock = jest.fn() as jest.MockedFunction<ListFormOnChange>;
+  const formItemMock: ListItemType = {
+    id: MOCK_ID,
+    title: MOCK_STRING,
+    description: MOCK_STRING
+  };
   let rerenderComponent: RenderResult['rerender'];
 
   beforeEach(() => {
-    const { rerender } = render(<ListItemForm onSubmit={onSubmitMock} />);
+    const { rerender } = render(
+      <ListItemForm
+        onSubmit={onSubmitMock}
+        onChange={onChangeMock}
+        formItem={formItemMock}
+      />
+    );
     rerenderComponent = rerender;
   });
 
@@ -41,27 +53,37 @@ describe('ListItemForm.tsx', () => {
 
   it('submit is enabled when isSubmitDisabled is passed', () => {
     rerenderComponent(
-      <ListItemForm onSubmit={onSubmitMock} isSubmitDisabled />
+      <ListItemForm
+        onSubmit={onSubmitMock}
+        onChange={onChangeMock}
+        formItem={formItemMock}
+        isSubmitDisabled
+      />
     );
     expect(screen.getByText(submitButtonText)).toBeDisabled();
   });
 
   it('submit is enabled when isSubmitDisabled is false', () => {
     rerenderComponent(
-      <ListItemForm onSubmit={onSubmitMock} isSubmitDisabled={false} />
+      <ListItemForm
+        onSubmit={onSubmitMock}
+        onChange={onChangeMock}
+        formItem={formItemMock}
+        isSubmitDisabled={false}
+      />
     );
     expect(screen.getByText(submitButtonText)).toBeEnabled();
   });
 
   it('calls onSubmit prop once when submit event fires', () => {
-    submitForm(screen, submitButtonText);
+    clickButton(screen, submitButtonText);
     expect(onSubmitMock).toHaveBeenCalledTimes(1);
   });
 
   it('onSubmit receives object with right values', () => {
     typeInputValue(screen, titleLabel, MOCK_STRING);
     typeInputValue(screen, descriptionLabel, MOCK_STRING);
-    submitForm(screen, submitButtonText);
+    clickButton(screen, submitButtonText);
 
     expect(onSubmitMock).toHaveBeenCalledWith({
       id: MOCK_ID,

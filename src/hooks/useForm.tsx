@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { omit } from 'lodash';
+import { FormValueListType } from '../components/models';
 
 interface UseFormProps {
   callback: (event: React.FormEvent<HTMLFormElement>) => void;
+  defaultValues?: FormValueListType;
 }
 
 interface UseFormReturnValue {
@@ -14,15 +16,19 @@ interface UseFormReturnValue {
     title?: string;
     description?: string;
   };
-  handleChange: (event: any) => void;
+  handleChange: React.ChangeEventHandler;
+  handleSubmit: React.FormEventHandler<HTMLFormElement>;
 }
 
-const useForm = ({ callback }: UseFormProps): UseFormReturnValue => {
-  const [values, setValues] = useState({});
+const useForm = ({
+  callback,
+  defaultValues
+}: UseFormProps): UseFormReturnValue => {
+  const [values, setValues] = useState(defaultValues ? defaultValues : {});
   const [errors, setErrors] = useState({});
 
   const validate = (
-    event: React.FormEvent<HTMLFormElement>,
+    event: React.ChangeEvent<HTMLFormElement>,
     name: string,
     value: string
   ) => {
@@ -56,7 +62,7 @@ const useForm = ({ callback }: UseFormProps): UseFormReturnValue => {
     }
   };
 
-  const handleChange = (event: any) => {
+  const handleChange = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.persist();
 
     const name = event.target.name;
@@ -70,7 +76,7 @@ const useForm = ({ callback }: UseFormProps): UseFormReturnValue => {
     });
   };
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     if (event) event.preventDefault();
 
     if (Object.keys(errors).length === 0 && Object.keys(values).length !== 0) {
@@ -83,7 +89,8 @@ const useForm = ({ callback }: UseFormProps): UseFormReturnValue => {
   return {
     values,
     errors,
-    handleChange
+    handleChange,
+    handleSubmit
   };
 };
 

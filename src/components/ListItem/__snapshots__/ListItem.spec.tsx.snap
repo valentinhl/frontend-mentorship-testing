@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListItem.tsx renders the component successfully 1`] = `
+<body>
+  <div>
+    <article
+      class="todo-list-item"
+    >
+      <header>
+        <h1>
+          MOCK_STRING
+        </h1>
+      </header>
+      <div>
+        <p>
+          MOCK_STRING
+        </p>
+      </div>
+      <button>
+        Edit
+      </button>
+    </article>
+  </div>
+</body>
+`;
